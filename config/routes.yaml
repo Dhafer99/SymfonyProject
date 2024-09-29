@@ -1,0 +1,19 @@
+#index:
+#    path: /
+#    controller: App\Controller\DefaultController::index
+
+
+image_display:
+    path: /image/{id}
+    controller: App\Controller\ImageController::display
+
+login:
+    path: /login
+    controller: App\Controller\LoginSignupController::login
+
+logout:
+    path: /logout
+
+errors:
+    path: /error
+    controller: App\Controller\AccessDeniedController::AccessDenied

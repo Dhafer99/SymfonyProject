@@ -1,0 +1,55 @@
+
+ {% extends 'base.html.twig' %}
+{% block title %}Association{% endblock %}
+
+{% block body %}
+  <link rel="stylesheet" href="{{ asset('css/test.css') }}"> 
+
+
+
+
+  <div class="container">
+  <h1>Associations</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="cards">
+          {% for association in associations %}
+        <li class="cards_item">
+          <div class="card">
+            <div class="img">
+              <a href="{{ path('app_association_show', {'id': association.id}) }}">
+                <img src="http://localhost/public/{{ association.Image }}" width="500" height="300">
+              </a>
+            </div> 
+            <div class="card_content">
+              <h2 class="card_title">{{ association.nom }}</h2>
+              <p class="card_text">Adresse: {{ association.ville }}</p>
+              <a href="{{ path('app_membre_new', {'id': association.id}) }}">
+								<button type="button" class="btn card_btn">Participer</button>
+							</a>
+            </div> 
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+     
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <a href="{{ path('app_association_new') }}">
+          <input type="button" class="btn btn-outline-success" value="Nouvelle association">
+        </a>
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+
+
+
+
+
+ 

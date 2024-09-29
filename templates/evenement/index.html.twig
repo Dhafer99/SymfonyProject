@@ -1,0 +1,85 @@
+ 
+ {% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+
+
+{% block body %}
+
+  
+
+<link rel="stylesheet" href="{{ asset('css/test.css') }}"> 
+
+
+
+
+  <div class="container">
+  <h1>Evenements</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="cards">
+        {% for evenement in evenements %}
+        <li class="cards_item">
+          <div class="card">
+            <div class="img">
+              <a href="{{ path('app_evenement_show', {'id': evenement.id}) }}">
+                <img src="http://localhost/public/{{ evenement.image_event }}" width="500" height="300">
+              </a>
+            </div> 
+            <div class="card_content">
+              <h2 class="card_title">{{ evenement.NomEvent }}</h2>
+              <p class="card_text">Adresse: {{ evenement.localisation }}</p>
+              {% if user in evenement.users %}
+                <td><a href="{{ path('cancelP', {'id': evenement.id}) }}"><input type="button" class="btn card_btn" value="Annuler participation"></a></td>
+              {% else %}
+                <td><a href="{{ path('addParticipation', {'id': evenement.id}) }}"><input type="button" class="btn card_btn" value="Participer"></a></td>
+              {% endif %}
+            </div> 
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+     {#  {{ knp_pagination_render(evenements) }} #}
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <a href="{{ path('app_evenement_new') }}">
+          <input type="button" class="btn btn-outline-success" value="Nouveau événement">
+        </a>
+      </div>
+      <div class="mb-3">
+        <a href="{{ path('app_evenement_tri') }}">
+          <input type="button" class="btn btn-outline-success" value="Trier">
+        </a>
+      </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Recherche
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Recherche</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+  {# {{ include('evenement/search.html.twig') }}  #}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ 
+ 
+ {% endblock %}
+
+ 
+

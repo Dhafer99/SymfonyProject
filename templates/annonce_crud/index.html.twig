@@ -1,0 +1,91 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Annonces{% endblock %}
+
+{% block body %}
+  
+<link rel="stylesheet" href="{{ asset('css/test.css') }}">
+
+
+  
+  <div class="container">
+  <h1>Annonces</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="cards">
+        {% for annonce in annonces %}
+        <li class="cards_item">
+          <div class="card">
+            <div class="img">
+              <a href="{{ path('app_annonce_crud_show', {'id': annonce.id}) }}">
+                <img src="http://localhost/public/{{ annonce.image }}" width="500" height="300">
+              </a>
+            </div> 
+            <div class="card_content">
+              <h2 class="card_title"></h2>
+              <p class="card_text">{{ annonce.description }}</p>
+              <a href="{{ path('app_annonce_crud_show', {'id': annonce.id}) }}">
+								<button type="button" class="btn card_btn">Afficher</button>
+							</a>
+            </div> 
+          </div>
+        </li>
+        {% endfor %}
+      </ul>
+    
+    </div>
+    <div class="col-md-4">
+      <div class="mb-3">
+        <a href="{{ path('app_annonce_crud_new') }}">
+          <input type="button" class="btn btn-outline-success" value="Nouvelle annonce">
+        </a>
+      </div>
+      <div class="mb-3">
+        <a href="{{ path('app_annonce_recherche') }}">
+          <input type="button" class="btn btn-outline-success" value="Recherche">
+        </a>
+      </div>
+      <div class="mb-3">
+        {% if is_granted('ROLE_ADMIN') %}
+    <a href="/categorie">Create Categorie</a>
+    {% endif %}
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
+    
+   
+                {#      <h2><i> Liste des commentaires </i></h2>
+                </center>
+                {% for commentaire in annonce.commentaires %}
+                   {% if commentaire.parent == null %}
+                       <h4>commentaire de {{commentaire.pseudo}}</h4>
+                       <p>Publié le {{commentaire.dateCreation|date("d/m/Y H:i:s")}}</p>
+                       <div>{{commentaire.contenu|raw}}</div>
+                       <p><a href="#ajout-commentaire" data-reply data-id="{{commentaire.id}}" class="btn btn-outline-success">Répondre</a></p> #}
+{# 
+<div class="rating">
+  <input type="radio" id="star5" name="rating" value="5" />
+  <label for="star5" title="Excellent">5 étoiles</label>
+  <input type="radio" id="star4" name="rating" value="4" />
+  <label for="star4" title="Très bien">4 étoiles</label>
+  <input type="radio" id="star3" name="rating" value="3" />
+  <label for="star3" title="Bien">3 étoiles</label>
+  <input type="radio" id="star2" name="rating" value="2" />
+  <label for="star2" title="Moyen">2 étoiles</label>
+  <input type="radio" id="star1" name="rating" value="1" />
+  <label for="star1" title="Mauvais">1 étoile</label>
+</div>
+
+ #}
+
+
+{% endblock %}
+
+
+
+
+
